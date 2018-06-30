@@ -8,7 +8,7 @@
 # 安裝
 
 1. Clone這個資料夾，並安裝所需資料包(以後會詳細列出)。
-2. 根據[Google Cloud Speech API](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/speech/cloud-client)，申請一個google帳號，並啟用Cloud Speech API。他會要你產生一組.json密鑰，請將這個密鑰黨保存好。
+2. 根據[Google Cloud Speech API](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/speech/cloud-client)，申請一個google帳號，並啟用Cloud Speech API。他會要你產生一組`.json`密鑰，請將這個密鑰檔保存好。
 3. 更改`bookkeeping.py`中`os.environ['GOOGLE_APPLICATION_CREDENTIALS']`的值，把它設成剛才下載的密鑰路徑。
 
 # 使用方法
