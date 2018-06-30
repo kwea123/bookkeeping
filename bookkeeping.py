@@ -1,14 +1,13 @@
 from flask import Flask, render_template, flash, Response, render_template_string, stream_with_context, request
 import pandas as pd
-import speech_recognition
-import tempfile
+# import tempfile
 # from gtts import gTTS
-import time
-import wave
+# import time
+# import wave
 # from pygame import mixer
 import re
-import sys
-import numpy as np
+# import sys
+# import numpy as np
 from datetime import datetime, timedelta
 import os
 
@@ -112,12 +111,12 @@ def date_of_last_day_of_month(date):
 def df_of_this_moth(df):
     today = datetime.now().date()
     df_this_month = df[df['日期']<=date_of_last_day_of_month(today)]
-    return {'data':df_this_month.to_html(escape=False), 'sum':np.sum(df_this_month['價錢']), 'size':len(df_this_month), 'date':today}
+    return {'data':df_this_month.to_html(escape=False), 'sum':sum(df_this_month['價錢']), 'size':len(df_this_month), 'date':today}
 
 def df_of_date(df, date):
     today = datetime.now().date()
     df_date = df[df['日期']==date]
-    return {'data':df_date.to_html(escape=False), 'sum':np.sum(df_date['價錢']), 'size':len(df_date), 'date': today}
+    return {'data':df_date.to_html(escape=False), 'sum':sum(df_date['價錢']), 'size':len(df_date), 'date': today}
 
 app = Flask(__name__)
 

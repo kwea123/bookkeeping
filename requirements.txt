@@ -1,0 +1,5 @@
+google-cloud-speech==0.33.0
+Flask==0.12.0
+Jinja2==2.9.6
+gunicorn==19.6.0
+PyAudio==0.2.11
