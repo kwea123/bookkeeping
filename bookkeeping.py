@@ -2,10 +2,10 @@ from flask import Flask, render_template, flash, Response, render_template_strin
 import pandas as pd
 import speech_recognition
 import tempfile
-from gtts import gTTS
+# from gtts import gTTS
 import time
 import wave
-from pygame import mixer
+# from pygame import mixer
 import re
 import sys
 import numpy as np
@@ -21,7 +21,7 @@ from six.moves import queue
 # Audio recording parameters
 RATE = 44100
 CHUNK = int(RATE / 1000)  # 100ms
-mixer.init(frequency=int(RATE*1.1)) # playing speed is 1.1x faster
+# mixer.init(frequency=int(RATE*1.1)) # playing speed is 1.1x faster
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/Users/kwea123/Downloads/MyProject-e85ed8c91456.json'
 
 if os.path.isfile('data.csv'):
