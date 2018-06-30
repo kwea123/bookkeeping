@@ -1,0 +1,60 @@
+<!doctype html>
+<title>記帳</title>
+<!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    var checked = [];
+    $("p.transcript").remove();
+    $("table").attr("class", "table table-hover");
+    $(":checkbox").change(function() {
+        var th = $(this).closest("tr").children("th"); //get th elements of checked inputs (the index of df)
+        var index = $(th).html();
+        if(this.checked) {
+            checked.push(index);
+        } else {
+            var index_ = checked.indexOf(index);
+            if (index_ !== -1)
+                checked.splice(index_, 1);
+        }
+        $("form[name='delete_form'] > input[name='value']").val(checked);
+    });
+    if('{{warning}}'){
+        alert('{{warning}}');
+    }
+});
+</script>
+
+<div style="width:80%; margin:auto; margin-top:50px" align="center">
+    <p align="center">今天是{{date|safe}}
+    <form name="record_form" action="/" method="post" style="display:inline; float:left" >
+        <input type="text" style="height: 0;" name="function" value="record" hidden>
+        <button class="btn btn-info" type="submit">錄音</button>
+    </form>
+    <form name="save_form" action="/" method="post" style="display:inline; float:left" >
+        <input type="text" style="height: 0;" name="function" value="save" hidden>
+        <button class="btn btn-danger" type="submit">儲存</button>
+    </form>
+    <form name="moth_form" action="/" method="post" style="display:inline; float:right">
+        <input type="text" style="height: 0;" name="function" value="view_month" hidden>
+        <button class="btn btn-default" type="submit">查看本月</button>
+    </form>
+    <form name="date_form" action="/" method="post" style="display:inline; float:right">
+        <input type="text" style="height: 0;" name="function" value="view_date" hidden>
+        <input type="date" name="date" required>
+        <button class="btn btn-success" type="submit">查看日期</button>
+    </form>
+    {% if size and size > 0 %}
+        <p>{{ data|safe }}
+        <p align="center">共{{ sum|safe }}元
+        <form name="delete_form" action="/" method="post" style="margin:0; display:inline; float:right" onsubmit="return confirm('確認刪除嗎(不能復原)？');">
+            <input type="text" style="height: 0;" name="function" value="delete" hidden>
+            <input type="text" style="height: 0;" name="value" hidden>
+            <button class="btn btn-warning" type="submit">刪除所選</button>
+        </form>
+    {% else %}
+        <p align="center"><strong>查無資料</strong>
+    {% endif %}
+</div>
